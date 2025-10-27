@@ -15,6 +15,7 @@ use App\Http\Controllers\PosteController;
 */
 
 Route::get('/post', [PosteController::class, 'index']);
+Route::get('/post', [PosteController::class, 'filter']);
 Route::post('/post', [PosteController::class, 'store']);
 Route::get('/post/{id}', [PosteController::class, 'show']);
 Route::put('/post/{id}', [PosteController::class, 'update']);

@@ -13,7 +13,7 @@ class PosteController extends Controller
     }
 
     public function store(Request $request){
-        try{
+       
         $posts= Post::create([
         "title" => $request->title,
         "author" => $request->author,
@@ -21,13 +21,12 @@ class PosteController extends Controller
         "status" => $request->status,
          ]);
          return response()->json($posts);
-        }catch(Exception $e){
-            return response()->json($e->getMessage());
-        }
-        
-   
-    
     }
+    public function filter()
+{
+    $posts = Post::where('status', 'published')->get();
+    return response()->json($posts);
+}
     public function show(Post $post) {
     return view("post.show", compact("post"));
 }
