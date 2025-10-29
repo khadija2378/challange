@@ -25,5 +25,5 @@ Route::get('/post/{id}',[PosteController::class,'show']);
 Route::get('/post/{id}',[PosteController::class,'update']);
 Route::get('/post/{id}',[PosteController::class,'destroy']);
 
-Route::get('/register',[UserController::class,'showForm']);
-Route::post('/register/submit',[UserController::class,'handleForm'])->name('handleForm');
+Route::get('/register',[UserController::class,'showForm'])->name('register.showForm');
+Route::post('/register/submit',[UserController::class,'handleForm'])->name('register.handleForm');

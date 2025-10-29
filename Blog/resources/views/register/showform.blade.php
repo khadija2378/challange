@@ -7,15 +7,31 @@
     <title>Document</title>
 </head>
 <body>
-        <form action="">
+    @if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+        <form action="{{ route('register.handleForm') }}" method="POST">
+            @csrf
             <label for="">name</label>
             <input type="text" name="name"><br>
+            @error('name')
+               <p class="">{{ $message }}</p>
+            @enderror
             <label for="">email</label>
             <input type="email" name="email"><br>
+            @error('email')
+                <p>{{ $message }}</p>
+            @enderror
             <label for="">password</label>
             <input type="password" name="password"><br>
+            @error('password')
+                <p>{{ $message }}</p>
+            @enderror
             <label for="">confirme password</label>
-            <input type="password" name="password"><br>
+            <input type="password" name="confirmer"><br>
+            @error('name')
+               <p>{{ $message }}</p>
+            @enderror
             <input type="submit" value="submit">
         </form>
 </body>
