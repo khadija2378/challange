@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class PosteController extends Controller
 {
     public function index(){
        $posts= Post::all();
      return response()->json($posts);
+     $users = User::with(['profile', 'posts.tags'])->get();
+
     }
 
     public function store(Request $request){
-       
+
         $posts= Post::create([
         "title" => $request->title,
         "author" => $request->author,
@@ -36,10 +39,10 @@ class PosteController extends Controller
         "content" => $request->content,
         "status" => $request->status,
         ]);
-       return redirect()->route('post.index'); 
+       return response()->json($posts);
     }
-    public function destroy(Post $posts){
+    public function destroy(Post $post){
         $post->delete();
-        return redirect()->route('post.index'); 
+        return response()->json($post);
     }
 }
